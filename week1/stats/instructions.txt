@@ -1,0 +1,34 @@
+What to build:
+A CLI program that takes integers as command-line arguments and prints the min, max, mean, and median.
+
+Example usage:
+$ go run . 5 3 8 1 4
+Min:    1
+Max:    8
+Mean:   4.20
+Median: 4.00
+
+$ go run . 7
+Min:    7
+Max:    7
+Mean:   7.00
+Median: 7.00
+
+$ go run .
+Error: no arguments provided
+
+$ go run . 5 3 hello 1
+Error: invalid input "hello": not an integer
+
+Requirements:
+- Read integers from os.Args
+- Print min, max, mean, and median
+- Handle edge cases: no args, non-numeric input, single element
+- Mean and median should be floating-point output
+- Errors go to stderr, not stdout
+- No external dependencies — stdlib only
+
+What I'm looking for:
+- Clean separation of logic from I/O (don't compute stats inside main)
+- Proper error handling — no log.Fatal in your computation functions
+- Code that reads like Go
