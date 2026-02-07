@@ -1,0 +1,49 @@
+What to build:
+A CLI program that converts values between units. It takes three arguments:
+a numeric value, a source unit, and a target unit.
+
+Example usage:
+$ go run . 100 celsius fahrenheit
+212.00
+
+$ go run . 5 kilometers miles
+3.11
+
+$ go run . 2.5 pounds kilograms
+1.13
+
+$ go run .
+Error: expected 3 arguments: <value> <from-unit> <to-unit>
+
+$ go run . hello celsius fahrenheit
+Error: invalid value "hello": not a number
+
+$ go run . 100 celsius kilometers
+Error: incompatible units: celsius (temperature) and kilometers (distance)
+
+$ go run . 100 widgets pounds
+Error: unknown unit "widgets"
+
+Supported conversions (at minimum):
+- Temperature: celsius, fahrenheit, kelvin
+- Distance: meters, kilometers, miles, feet, yards
+- Weight: grams, kilograms, pounds, ounces
+
+Requirements:
+- Three arguments from os.Args: value, from-unit, to-unit
+- Output the converted value to 2 decimal places
+- Handle errors: wrong argument count, non-numeric value, unknown unit, incompatible units
+- Errors go to stderr with a non-zero exit code
+- No external dependencies — stdlib only
+
+Structure:
+- This is NOT a one-file program. Separate your conversion logic into its own package.
+- main.go handles argument parsing, error display, and exit codes
+- A separate package handles unit definitions, validation, and conversion math
+- Think about how to organize the unit data. Hardcoding a giant switch statement is not the answer.
+
+What I'm looking for:
+- Clean package boundary — main knows nothing about conversion formulas
+- Proper error handling with meaningful, distinct error cases (not one generic "something went wrong")
+- Thoughtful data modeling — how do you represent units and their relationships?
+- Code that reads like Go, not like Python or JavaScript wearing a Go costume
