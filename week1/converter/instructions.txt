@@ -42,8 +42,21 @@ Structure:
 - A separate package handles unit definitions, validation, and conversion math
 - Think about how to organize the unit data. Hardcoding a giant switch statement is not the answer.
 
+Error handling focus (this is the Week 1 skill):
+- Define custom error types in your conversion package (not just string errors)
+- Use fmt.Errorf with %w to wrap errors with context
+- main.go should use errors.Is and/or errors.As to inspect errors and choose how to display them
+- Think about it: if main imports your conversion package, how does main distinguish
+  between "unknown unit" and "incompatible units" without string matching?
+
 What I'm looking for:
 - Clean package boundary — main knows nothing about conversion formulas
-- Proper error handling with meaningful, distinct error cases (not one generic "something went wrong")
+- Error types that let the caller (main) react differently to different failures
 - Thoughtful data modeling — how do you represent units and their relationships?
 - Code that reads like Go, not like Python or JavaScript wearing a Go costume
+
+Tests:
+- Write tests for your conversion package (not for main)
+- Table-driven tests — this is non-negotiable
+- Cover: valid conversions, unknown units, incompatible units, edge cases (zero, negative values)
+- Tests live in the conversion package directory
