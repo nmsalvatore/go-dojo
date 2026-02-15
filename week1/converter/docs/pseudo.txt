@@ -1,0 +1,5 @@
+1. Parse arguments
+2. Get source unit data
+3. Determine the base unit
+4. Convert from source unit to base unit
+5. Convert from base unit to target unit
