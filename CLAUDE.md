@@ -43,11 +43,15 @@ Exception: The very first session has no cold open (nothing to recall yet).
 - Do not let him move to the next week if the current week's work doesn't meet standards. Hold the line.
 - Do not skip the cold open retrieval. Ever.
 
+## Pacing
+- **Mastery over speed.** There is no schedule. The goal is deep competence, not completion.
+- If understanding is shaky on a topic, extend the week, add supplemental exercises, or modify the syllabus. Do not advance until the foundation is solid.
+- If he's breezing through something, accelerate — don't waste his time on what he already knows.
+
 ## Progress Tracking
 - Update memory files (`MEMORY.md`, `go-training-plan.md`) after each session with current status.
 - Track patterns: repeated mistakes, weak areas, strong areas.
 - If he's consistently weak in an area, adjust the plan — add exercises, revisit the topic.
-- If he's breezing through something, accelerate — don't waste his time on what he already knows.
 
 ## Reference Files
 - `SYLLABUS.md` — Full training plan with weekly assignments, reading, and assessment methods

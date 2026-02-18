@@ -8,31 +8,52 @@ import (
 )
 
 type Inventory struct {
-	books []Book
+	notifier Notifier
+	books    []Book
 }
 
-func NewInventory() *Inventory {
-	return &Inventory{}
+func NewInventory(n Notifier) *Inventory {
+	return &Inventory{
+		notifier: n,
+	}
 }
 
-func (inv *Inventory) Add(b Book) {
+func (inv *Inventory) Add(b Book) error {
 	inv.books = append(inv.books, b)
+	msg := fmt.Sprintf("%q by %s added to inventory", b.Title, b.Author)
+
+	err := inv.notifier.Notify(msg)
+	if err != nil {
+		return fmt.Errorf("notifying: %w", err)
+	}
+	return nil
 }
 
 func (inv *Inventory) Remove(title string) error {
 	for i, b := range inv.books {
 		if b.Title == title {
 			inv.books = append(inv.books[:i], inv.books[i+1:]...)
+			msg := fmt.Sprintf("%q removed from inventory", b.Title)
+
+			err := inv.notifier.Notify(msg)
+			if err != nil {
+				return fmt.Errorf("notifying: %w", err)
+			}
+
 			return nil
 		}
 	}
-	return fmt.Errorf("book not found: %q", title)
+	return &BookNotFoundError{title}
 }
 
 func (inv *Inventory) List() []Book {
 	result := make([]Book, len(inv.books))
 	copy(result, inv.books)
 	return result
+}
+
+func (inv *Inventory) Count() int {
+	return len(inv.books)
 }
 
 func (inv *Inventory) SearchByTitle(query string) []Book {
